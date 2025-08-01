@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MimirCore.Api", "MimirCore.Api\MimirCore.Api\MimirCore.Api.csproj", "{24B1C686-E1C1-40E2-AD3F-66D714EDB841}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MimirCore.Application", "MimirCore.Application\MimirCore.Application\MimirCore.Application.csproj", "{AB01EDF7-C31B-416B-BF15-89F77BC2FF48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MimirCore.Domain", "MimirCore.Domain\MimirCore.Domain\MimirCore.Domain.csproj", "{F13A0A94-2D8E-4A34-BEDB-38F7906B235E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MimirCore.Infrastructure", "MimirCore.Infrastructure\MimirCore.Infrastructure\MimirCore.Infrastructure.csproj", "{8A585FB6-F023-4A52-955F-6875E388DFE4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{24B1C686-E1C1-40E2-AD3F-66D714EDB841}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24B1C686-E1C1-40E2-AD3F-66D714EDB841}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24B1C686-E1C1-40E2-AD3F-66D714EDB841}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24B1C686-E1C1-40E2-AD3F-66D714EDB841}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB01EDF7-C31B-416B-BF15-89F77BC2FF48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB01EDF7-C31B-416B-BF15-89F77BC2FF48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB01EDF7-C31B-416B-BF15-89F77BC2FF48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB01EDF7-C31B-416B-BF15-89F77BC2FF48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F13A0A94-2D8E-4A34-BEDB-38F7906B235E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F13A0A94-2D8E-4A34-BEDB-38F7906B235E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F13A0A94-2D8E-4A34-BEDB-38F7906B235E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F13A0A94-2D8E-4A34-BEDB-38F7906B235E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A585FB6-F023-4A52-955F-6875E388DFE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A585FB6-F023-4A52-955F-6875E388DFE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A585FB6-F023-4A52-955F-6875E388DFE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A585FB6-F023-4A52-955F-6875E388DFE4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
