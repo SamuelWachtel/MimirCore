@@ -5,7 +5,6 @@ namespace MimirCore.Application.Extensions;
 
 public static class ShiftExtensions
 {
-    // Domain -> Application
     public static ShiftDto ToApplicationDto(this Shift shift)
     {
         return new ShiftDto
@@ -17,7 +16,7 @@ public static class ShiftExtensions
             EndTime = shift.EndTime,
             ActualStartTime = shift.ActualStartTime,
             ActualEndTime = shift.ActualEndTime,
-            Status = shift.Status,
+            Status = shift.Status.ToApplicationDto(),
             Notes = shift.Notes,
             CreatedAt = shift.CreatedAt,
             UpdatedAt = shift.ModifiedAt,
@@ -34,21 +33,20 @@ public static class ShiftExtensions
             EmployeeName = shift.Employee != null ? $"{shift.Employee.User?.FirstName} {shift.Employee.User?.LastName}" : "",
             StartTime = shift.StartTime,
             EndTime = shift.EndTime,
-            Status = shift.Status,
+            Status = shift.Status.ToApplicationDto(),
             ShiftTemplateName = shift.ShiftTemplate?.Name ?? ""
         };
     }
 
-    // Application -> Domain
     public static Shift ToEntity(this CreateShiftDto createShiftDto)
     {
         return new Shift
         {
             EmployeeId = createShiftDto.EmployeeId,
-            ShiftTemplateId = createShiftDto.ShiftTemplateId ?? 0,
+            ShiftTemplateId = createShiftDto.ShiftTemplateId ?? Guid.NewGuid(),
             StartTime = createShiftDto.StartTime,
             EndTime = createShiftDto.EndTime,
-            Status = "Scheduled",
+            Status = ShiftStatus.Scheduled,
             Notes = createShiftDto.Notes,
             CreatedAt = DateTime.UtcNow
         };
@@ -60,12 +58,11 @@ public static class ShiftExtensions
         shift.EndTime = updateShiftDto.EndTime;
         shift.ActualStartTime = updateShiftDto.ActualStartTime;
         shift.ActualEndTime = updateShiftDto.ActualEndTime;
-        shift.Status = updateShiftDto.Status;
+        shift.Status = updateShiftDto.StatusDto.ToEntity();
         shift.Notes = updateShiftDto.Notes;
         shift.ModifiedAt = DateTime.UtcNow;
     }
 
-    // Collection extensions
     public static IEnumerable<ShiftDto> ToApplicationDtos(this IEnumerable<Shift> shifts)
     {
         return shifts.Select(s => s.ToApplicationDto());

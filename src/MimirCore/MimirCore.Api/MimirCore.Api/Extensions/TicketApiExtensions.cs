@@ -1,4 +1,5 @@
 using MimirCore.Api.Models.Ticket;
+using MimirCore.Application.Extensions;
 using MimirCore.Application.Models.Ticket;
 using TicketPaginatedListResponse = MimirCore.Api.Models.Ticket.TicketPaginatedListResponse;
 
@@ -6,7 +7,6 @@ namespace MimirCore.Api.Extensions;
 
 public static class TicketApiExtensions
 {
-    // Application -> API
     public static TicketResponse ToApiDto(this Application.Models.Ticket.TicketDto ticketDto)
     {
         return new TicketResponse
@@ -17,8 +17,8 @@ public static class TicketApiExtensions
             CategoryId = ticketDto.CategoryId,
             CreatedById = ticketDto.CreatedById,
             AssignedToId = ticketDto.AssignedToId,
-            Priority = ticketDto.Priority,
-            Status = ticketDto.Status,
+            Priority = ticketDto.Priority.ToApiDto(),
+            TicketStatus = ticketDto.TicketStatus.ToEntity(),
             DueDate = ticketDto.DueDate,
             ResolvedAt = ticketDto.ResolvedAt,
             CreatedAt = ticketDto.CreatedAt,
@@ -36,8 +36,8 @@ public static class TicketApiExtensions
             Id = ticketItemDto.Id,
             Title = ticketItemDto.Title,
             CategoryName = ticketItemDto.CategoryName,
-            Priority = ticketItemDto.Priority,
-            Status = ticketItemDto.Status,
+            Priority = ticketItemDto.Priority.ToApiDto(),
+            TicketStatus = ticketItemDto.TicketStatus.ToEntity(),
             CreatedByName = ticketItemDto.CreatedByName,
             AssignedToName = ticketItemDto.AssignedToName,
             DueDate = ticketItemDto.DueDate,
@@ -45,7 +45,6 @@ public static class TicketApiExtensions
         };
     }
 
-    // API -> Application
     public static CreateTicketDto ToApplicationDto(this CreateTicketRequest createTicketRequest)
     {
         return new CreateTicketDto
@@ -54,7 +53,7 @@ public static class TicketApiExtensions
             Description = createTicketRequest.Description,
             CategoryId = createTicketRequest.CategoryId,
             AssignedToId = createTicketRequest.AssignedToId,
-            Priority = createTicketRequest.Priority,
+            Priority = createTicketRequest.Priority.ToApplicationDto(),
             DueDate = createTicketRequest.DueDate
         };
     }
@@ -67,13 +66,12 @@ public static class TicketApiExtensions
             Description = updateTicketRequest.Description,
             CategoryId = updateTicketRequest.CategoryId,
             AssignedToId = updateTicketRequest.AssignedToId,
-            Priority = updateTicketRequest.Priority,
-            Status = updateTicketRequest.Status,
+            Priority = updateTicketRequest.Priority.ToApplicationDto(),
+            TicketStatus = updateTicketRequest.TicketStatus.ToApplicationDto(),
             DueDate = updateTicketRequest.DueDate,
         };
     }
 
-    // Collection extensions
     public static IEnumerable<TicketResponse> ToApiDtos(this IEnumerable<Application.Models.Ticket.TicketDto> tickets)
     {
         return tickets.Select(t => t.ToApiDto());
@@ -84,7 +82,6 @@ public static class TicketApiExtensions
         return tickets.Select(t => t.ToApiDto());
     }
 
-    // Pagination extensions
     public static TicketPaginatedListResponse ToApiResponse(this Application.Models.Ticket.TicketPaginatedListResponse appResponse)
     {
         return new TicketPaginatedListResponse(

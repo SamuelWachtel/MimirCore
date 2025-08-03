@@ -5,7 +5,6 @@ namespace MimirCore.Application.Extensions;
 
 public static class LeaveRequestExtensions
 {
-    // Domain -> Application
     public static LeaveRequestDto ToApplicationDto(this LeaveRequest leaveRequest)
     {
         return new LeaveRequestDto
@@ -44,7 +43,6 @@ public static class LeaveRequestExtensions
         };
     }
 
-    // Application -> Domain
     public static LeaveRequest ToEntity(this CreateLeaveRequestDto createLeaveRequestDto)
     {
         return new LeaveRequest
@@ -71,7 +69,6 @@ public static class LeaveRequestExtensions
         leaveRequest.ModifiedAt = DateTime.UtcNow;
     }
 
-    // Collection extensions
     public static IEnumerable<LeaveRequestDto> ToApplicationDtos(this IEnumerable<LeaveRequest> leaveRequests)
     {
         return leaveRequests.Select(lr => lr.ToApplicationDto());

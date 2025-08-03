@@ -7,7 +7,7 @@ namespace MimirCore.Application.CQRS.Normal.Queries.Leave;
 
 public class GetMyLeaveRequestsQuery : IQuery<LeaveRequestPaginatedListResponse>
 {
-    public int EmployeeId { get; set; }
+    public Guid EmployeeId { get; set; }
     public int PageNumber { get; set; } = 1;
     public int PageSize { get; set; } = 10;
     public string? Status { get; set; }

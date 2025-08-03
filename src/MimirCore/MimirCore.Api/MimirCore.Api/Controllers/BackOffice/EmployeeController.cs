@@ -57,7 +57,7 @@ public class EmployeeController : BaseApiController
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<EmployeeResponse>> UpdateEmployee(int id, [FromBody] UpdateEmployeeRequest request)
+    public async Task<ActionResult<EmployeeResponse>> UpdateEmployee(Guid id, [FromBody] UpdateEmployeeRequest request)
     {
         var command = new UpdateEmployeeCommand
         {
@@ -75,7 +75,7 @@ public class EmployeeController : BaseApiController
     }
 
     [HttpPost("{id}/terminate")]
-    public async Task<ActionResult> TerminateEmployee(int id, [FromBody] TerminateEmployeeRequest request)
+    public async Task<ActionResult> TerminateEmployee(Guid id, [FromBody] TerminateEmployeeRequest request)
     {
         var command = new UpdateEmployeeCommand
         {

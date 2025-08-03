@@ -5,7 +5,6 @@ namespace MimirCore.Application.Extensions;
 
 public static class TicketExtensions
 {
-    // Domain -> Application
     public static TicketDto ToApplicationDto(this Ticket ticket)
     {
         return new TicketDto
@@ -16,8 +15,8 @@ public static class TicketExtensions
             CategoryId = ticket.CategoryId,
             CreatedById = ticket.CreatedById,
             AssignedToId = ticket.AssignedToId,
-            Priority = ticket.Priority,
-            Status = ticket.Status,
+            Priority = ticket.Priority.ToApplicationDto(),
+            TicketStatus = ticket.TicketStatus.ToApplicationDto(),
             DueDate = ticket.DueDate,
             ResolvedAt = ticket.ResolvedAt,
             CreatedAt = ticket.CreatedAt,
@@ -32,8 +31,8 @@ public static class TicketExtensions
             Id = ticket.Id,
             Title = ticket.Title,
             CategoryName = ticket.Category?.Name ?? "",
-            Priority = ticket.Priority,
-            Status = ticket.Status,
+            Priority = ticket.Priority.ToApplicationDto(),
+            TicketStatus = ticket.TicketStatus.ToApplicationDto(),
             CreatedByName = ticket.CreatedBy != null ? $"{ticket.CreatedBy.User?.FirstName} {ticket.CreatedBy.User?.LastName}" : "",
             AssignedToName = ticket.AssignedTo != null ? $"{ticket.AssignedTo.User?.FirstName} {ticket.AssignedTo.User?.LastName}" : "",
             DueDate = ticket.DueDate,
@@ -41,7 +40,6 @@ public static class TicketExtensions
         };
     }
 
-    // Application -> Domain
     public static Ticket ToEntity(this CreateTicketDto createTicketDto)
     {
         return new Ticket
@@ -51,8 +49,8 @@ public static class TicketExtensions
             CategoryId = createTicketDto.CategoryId,
             CreatedById = createTicketDto.CreatedById,
             AssignedToId = createTicketDto.AssignedToId,
-            Priority = createTicketDto.Priority,
-            Status = "Open",
+            Priority = createTicketDto.Priority.ToEntity(),
+            TicketStatus = TicketStatus.New,
             DueDate = createTicketDto.DueDate,
             CreatedAt = DateTime.UtcNow
         };
@@ -64,13 +62,12 @@ public static class TicketExtensions
         ticket.Description = updateTicketDto.Description;
         ticket.CategoryId = updateTicketDto.CategoryId;
         ticket.AssignedToId = updateTicketDto.AssignedToId;
-        ticket.Priority = updateTicketDto.Priority;
-        ticket.Status = updateTicketDto.Status;
+        ticket.Priority = updateTicketDto.Priority.ToEntity();
+        ticket.TicketStatus = updateTicketDto.TicketStatus.ToEntity();
         ticket.DueDate = updateTicketDto.DueDate;
         ticket.ModifiedAt = DateTime.UtcNow;
     }
 
-    // Collection extensions
     public static IEnumerable<TicketDto> ToApplicationDtos(this IEnumerable<Ticket> tickets)
     {
         return tickets.Select(t => t.ToApplicationDto());

@@ -14,6 +14,5 @@ public class Permission : BaseEntity
     [StringLength(50)]
     public string Module { get; set; }
         
-    // Navigation properties
     public virtual ICollection<RolePermission> RolePermissions { get; set; } = new List<RolePermission>();
 }

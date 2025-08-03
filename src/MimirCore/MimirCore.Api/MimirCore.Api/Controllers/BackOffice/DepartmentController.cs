@@ -34,9 +34,9 @@ public class DepartmentController : BaseApiController
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<DepartmentResponse>> GetDepartmentById(int id)
+    public async Task<ActionResult<DepartmentResponse>> GetDepartmentById(Guid id)
     {
-        var query = new GetDepartmentByIdQuery(id);
+        var query = new GetDepartmentByIdQuery{Id = id};
         var result = await Mediator.Send(query);
         return HandleResult(result);
     }

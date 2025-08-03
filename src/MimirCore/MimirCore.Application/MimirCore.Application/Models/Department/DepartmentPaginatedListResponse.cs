@@ -2,7 +2,6 @@ using MimirCore.Application.Models.Common;
 
 namespace MimirCore.Application.Models.Department;
 
-// Department Paginated List Response
 public class DepartmentPaginatedListResponse : PaginatedListResponse<DepartmentItemListDto>
 {
     public DepartmentPaginatedListResponse() : base() { }

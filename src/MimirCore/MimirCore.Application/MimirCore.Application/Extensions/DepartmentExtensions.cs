@@ -5,7 +5,6 @@ namespace MimirCore.Application.Extensions;
 
 public static class DepartmentExtensions
 {
-    // Domain -> Application
     public static DepartmentDto ToApplicationDto(this Department department)
     {
         return new DepartmentDto
@@ -34,7 +33,6 @@ public static class DepartmentExtensions
         };
     }
 
-    // Application -> Domain
     public static Department ToEntity(this CreateDepartmentDto createDepartmentDto)
     {
         return new Department
@@ -54,7 +52,6 @@ public static class DepartmentExtensions
         department.ModifiedAt = DateTime.UtcNow;
     }
 
-    // Collection extensions
     public static IEnumerable<DepartmentDto> ToApplicationDtos(this IEnumerable<Department> departments)
     {
         return departments.Select(d => d.ToApplicationDto());

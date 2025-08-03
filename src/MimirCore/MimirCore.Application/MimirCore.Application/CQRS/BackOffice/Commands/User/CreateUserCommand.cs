@@ -12,9 +12,6 @@ public class CreateUserCommand : ICommand<UserDto>
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string PhoneNumber { get; set; }
-    public string Password { get; set; }
-    public bool IsActive { get; set; } = true;
-    public List<int> RoleIds { get; set; } = new();
 }
 
 public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, UserDto>

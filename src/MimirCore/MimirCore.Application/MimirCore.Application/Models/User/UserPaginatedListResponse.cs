@@ -2,7 +2,6 @@ using MimirCore.Application.Models.Common;
 
 namespace MimirCore.Application.Models.User;
 
-// User Paginated List Response
 public class UserPaginatedListResponse : PaginatedListResponse<UserItemListDto>
 {
     public UserPaginatedListResponse() : base() { }

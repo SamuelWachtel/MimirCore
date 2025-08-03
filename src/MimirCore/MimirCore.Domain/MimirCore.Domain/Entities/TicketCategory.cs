@@ -16,7 +16,6 @@ public class TicketCategory : BaseEntity
         
     public int? ParentCategoryId { get; set; }
         
-    // Navigation properties
     public virtual TicketCategory ParentCategory { get; set; }
     public virtual ICollection<TicketCategory> SubCategories { get; set; } = new List<TicketCategory>();
     public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();

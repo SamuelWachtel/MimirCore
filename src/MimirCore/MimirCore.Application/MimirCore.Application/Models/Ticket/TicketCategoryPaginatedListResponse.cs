@@ -2,7 +2,6 @@ using MimirCore.Application.Models.Common;
 
 namespace MimirCore.Application.Models.Ticket;
 
-// Ticket Category Paginated List Response
 public class TicketCategoryPaginatedListResponse : PaginatedListResponse<TicketCategoryItemListDto>
 {
     public TicketCategoryPaginatedListResponse() : base() { }

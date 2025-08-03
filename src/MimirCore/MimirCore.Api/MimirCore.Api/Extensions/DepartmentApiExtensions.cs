@@ -6,7 +6,6 @@ namespace MimirCore.Api.Extensions;
 
 public static class DepartmentApiExtensions
 {
-    // Application -> API
     public static DepartmentResponse ToApiDto(this DepartmentDto departmentDto)
     {
         return new DepartmentResponse
@@ -35,7 +34,6 @@ public static class DepartmentApiExtensions
         };
     }
 
-    // API -> Application
     public static CreateDepartmentDto ToApplicationDto(this CreateDepartmentRequest createDepartmentRequest)
     {
         return new CreateDepartmentDto
@@ -56,7 +54,6 @@ public static class DepartmentApiExtensions
         };
     }
 
-    // Collection extensions
     public static IEnumerable<DepartmentResponse> ToApiDtos(this IEnumerable<DepartmentDto> departments)
     {
         return departments.Select(d => d.ToApiDto());
@@ -67,7 +64,6 @@ public static class DepartmentApiExtensions
         return departments.Select(d => d.ToApiDto());
     }
 
-    // Pagination extensions
     public static DepartmentPaginatedListResponse ToApiResponse(this Application.Models.Department.DepartmentPaginatedListResponse appResponse)
     {
         return new DepartmentPaginatedListResponse(

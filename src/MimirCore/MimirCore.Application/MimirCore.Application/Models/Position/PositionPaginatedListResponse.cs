@@ -2,7 +2,6 @@ using MimirCore.Application.Models.Common;
 
 namespace MimirCore.Application.Models.Position;
 
-// Position Paginated List Response
 public class PositionPaginatedListResponse : PaginatedListResponse<PositionItemListDto>
 {
     public PositionPaginatedListResponse() : base() { }

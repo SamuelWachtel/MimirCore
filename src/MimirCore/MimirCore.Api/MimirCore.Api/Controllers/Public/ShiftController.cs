@@ -16,7 +16,7 @@ public class ShiftController : BaseApiController
         [FromQuery] int pageNumber = 1,
         [FromQuery] int pageSize = 10)
     {
-        var employeeId = GetCurrentUserId(); // Assuming user has employee context
+        var employeeId = GetCurrentUserId();
         var query = new GetMyShiftsQuery
         {
             EmployeeId = employeeId,
@@ -31,9 +31,9 @@ public class ShiftController : BaseApiController
     }
 
     [HttpPost("{shiftId}/check-in")]
-    public async Task<ActionResult> CheckIn(int shiftId, [FromBody] CheckInRequest request)
+    public async Task<ActionResult> CheckIn(Guid shiftId, [FromBody] CheckInRequest request)
     {
-        var employeeId = GetCurrentUserId(); // Assuming user has employee context
+        var employeeId = GetCurrentUserId();
         var command = new CheckInCommand
         {
             ShiftId = shiftId,
@@ -47,9 +47,9 @@ public class ShiftController : BaseApiController
     }
 
     [HttpPost("{shiftId}/check-out")]
-    public async Task<ActionResult> CheckOut(int shiftId, [FromBody] CheckOutRequest request)
+    public async Task<ActionResult> CheckOut(Guid shiftId, [FromBody] CheckOutRequest request)
     {
-        var employeeId = GetCurrentUserId(); // Assuming user has employee context
+        var employeeId = GetCurrentUserId();
         var command = new CheckOutCommand
         {
             ShiftId = shiftId,

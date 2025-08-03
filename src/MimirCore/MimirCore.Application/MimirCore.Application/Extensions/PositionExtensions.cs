@@ -5,7 +5,6 @@ namespace MimirCore.Application.Extensions;
 
 public static class PositionExtensions
 {
-    // Domain -> Application
     public static PositionDto ToApplicationDto(this Position position)
     {
         return new PositionDto
@@ -32,7 +31,6 @@ public static class PositionExtensions
         };
     }
 
-    // Application -> Domain
     public static Position ToEntity(this CreatePositionDto createPositionDto)
     {
         return new Position
@@ -56,7 +54,6 @@ public static class PositionExtensions
         position.ModifiedAt = DateTime.UtcNow;
     }
 
-    // Collection extensions
     public static IEnumerable<PositionDto> ToApplicationDtos(this IEnumerable<Position> positions)
     {
         return positions.Select(p => p.ToApplicationDto());

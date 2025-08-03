@@ -4,6 +4,6 @@ public class CreateTeamRequest
 {
     public string Name { get; set; }
     public string Description { get; set; }
-    public int DepartmentId { get; set; }
-    public int? LeaderId { get; set; }
+    public Guid DepartmentId { get; set; }
+    public Guid? LeaderId { get; set; }
 }

@@ -51,8 +51,6 @@ public class UserController : BaseApiController
             FirstName = request.FirstName,
             LastName = request.LastName,
             PhoneNumber = request.PhoneNumber,
-            IsActive = request.IsActive,
-            RoleIds = request.RoleIds ?? new List<int>()
         };
 
         var result = await Mediator.Send(command);
@@ -60,7 +58,7 @@ public class UserController : BaseApiController
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<UserResponse>> UpdateUser(int id, [FromBody] UpdateUserRequest request)
+    public async Task<ActionResult<UserResponse>> UpdateUser(Guid id, [FromBody] UpdateUserRequest request)
     {
         var command = new UpdateUserCommand
         {
@@ -71,7 +69,7 @@ public class UserController : BaseApiController
             LastName = request.LastName,
             PhoneNumber = request.PhoneNumber,
             IsActive = request.IsActive,
-            RoleIds = request.RoleIds ?? new List<int>()
+            RoleIds = request.RoleIds
         };
 
         var result = await Mediator.Send(command);
@@ -79,30 +77,10 @@ public class UserController : BaseApiController
     }
 
     [HttpDelete("{id}")]
-    public async Task<ActionResult> DeleteUser(int id)
+    public async Task<ActionResult> DeleteUser(Guid id)
     {
-        var command = new DeleteUserCommand(id);
+        var command = new DeleteUserCommand{Id = id};
         await Mediator.Send(command);
         return NoContent();
     }
-
-    [HttpPost("{id}/reset-password")]
-    public async Task<ActionResult> ResetPassword(int id, [FromBody] ResetPasswordRequest request)
-    {
-        var command = new ResetPasswordCommand
-        {
-            UserId = id,
-            NewPassword = request.NewPassword,
-            RequirePasswordChange = request.RequirePasswordChange
-        };
-
-        await Mediator.Send(command);
-        return Ok();
-    }
-}
-
-public class ResetPasswordRequest
-{
-    public string NewPassword { get; set; } = string.Empty;
-    public bool RequirePasswordChange { get; set; } = true;
 }

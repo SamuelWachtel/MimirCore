@@ -7,10 +7,10 @@ namespace MimirCore.Application.CQRS.Normal.Queries.Ticket;
 
 public class GetTicketByIdQuery : IQuery<TicketDto>
 {
-    public int Id { get; set; }
-    public int UserId { get; set; } // For authorization
+    public Guid Id { get; set; }
+    public Guid UserId { get; set; }
     
-    public GetTicketByIdQuery(int id, int userId)
+    public GetTicketByIdQuery(Guid id, Guid userId)
     {
         Id = id;
         UserId = userId;

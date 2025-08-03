@@ -6,8 +6,8 @@ namespace MimirCore.Application.CQRS.Normal.Commands.Shift;
 
 public class CheckOutCommand : ICommand
 {
-    public int ShiftId { get; set; }
-    public int EmployeeId { get; set; }
+    public Guid ShiftId { get; set; }
+    public Guid EmployeeId { get; set; }
     public DateTime CheckOutTime { get; set; } = DateTime.UtcNow;
     public string? Notes { get; set; }
 }

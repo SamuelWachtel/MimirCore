@@ -7,7 +7,7 @@ namespace MimirCore.Application.CQRS.Normal.Queries.Shift;
 
 public class GetMyShiftsQuery : IQuery<ShiftPaginatedListResponse>
 {
-    public int EmployeeId { get; set; }
+    public Guid EmployeeId { get; set; }
     public DateTime? StartDate { get; set; }
     public DateTime? EndDate { get; set; }
     public int PageNumber { get; set; } = 1;

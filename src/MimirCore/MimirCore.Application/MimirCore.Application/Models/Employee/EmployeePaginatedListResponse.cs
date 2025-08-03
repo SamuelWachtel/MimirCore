@@ -2,7 +2,6 @@ using MimirCore.Application.Models.Common;
 
 namespace MimirCore.Application.Models.Employee;
 
-// Employee Paginated List Response
 public class EmployeePaginatedListResponse : PaginatedListResponse<EmployeeItemListDto>
 {
     public EmployeePaginatedListResponse() : base() { }

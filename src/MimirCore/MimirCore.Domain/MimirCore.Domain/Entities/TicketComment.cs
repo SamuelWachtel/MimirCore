@@ -12,7 +12,6 @@ public class TicketComment : BaseEntity
         
     public bool IsInternal { get; set; } = false;
         
-    // Navigation properties
     public virtual Ticket Ticket { get; set; }
     public virtual Employee Author { get; set; }
 }

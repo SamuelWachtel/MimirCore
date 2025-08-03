@@ -20,7 +20,6 @@ public class TicketAttachment : BaseEntity
         
     public long FileSize { get; set; }
         
-    // Navigation properties
     public virtual Ticket Ticket { get; set; }
     public virtual Employee UploadedBy { get; set; }
 }

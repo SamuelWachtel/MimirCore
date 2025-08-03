@@ -25,7 +25,6 @@ public class User : BaseEntity
         
     public DateTime? LastLoginAt { get; set; }
         
-    // Navigation properties
     public virtual Employee Employee { get; set; }
     public virtual ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
 }

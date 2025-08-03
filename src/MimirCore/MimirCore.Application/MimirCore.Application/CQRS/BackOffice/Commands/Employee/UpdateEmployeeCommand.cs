@@ -7,9 +7,9 @@ namespace MimirCore.Application.CQRS.BackOffice.Commands.Employee;
 
 public class UpdateEmployeeCommand : ICommand<EmployeeDto>
 {
-    public int Id { get; set; }
-    public int TeamId { get; set; }
-    public int PositionId { get; set; }
+    public Guid Id { get; set; }
+    public Guid TeamId { get; set; }
+    public Guid PositionId { get; set; }
     public decimal Salary { get; set; }
     public string EmploymentType { get; set; }
     public string Status { get; set; }

@@ -5,7 +5,6 @@ namespace MimirCore.Application.Extensions;
 
 public static class LeaveTypeExtensions
 {
-    // Domain -> Application
     public static LeaveTypeDto ToApplicationDto(this LeaveType leaveType)
     {
         return new LeaveTypeDto
@@ -31,7 +30,6 @@ public static class LeaveTypeExtensions
         };
     }
 
-    // Collection extensions
     public static IEnumerable<LeaveTypeDto> ToApplicationDtos(this IEnumerable<LeaveType> leaveTypes)
     {
         return leaveTypes.Select(lt => lt.ToApplicationDto());

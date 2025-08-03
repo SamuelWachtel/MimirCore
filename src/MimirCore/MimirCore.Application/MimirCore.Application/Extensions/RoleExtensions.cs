@@ -5,7 +5,6 @@ namespace MimirCore.Application.Extensions;
 
 public static class RoleExtensions
 {
-    // Domain -> Application
     public static RoleDto ToApplicationDto(this Role role)
     {
         return new RoleDto
@@ -28,7 +27,6 @@ public static class RoleExtensions
         };
     }
 
-    // Collection extensions
     public static IEnumerable<RoleDto> ToApplicationDtos(this IEnumerable<Role> roles)
     {
         return roles.Select(r => r.ToApplicationDto());

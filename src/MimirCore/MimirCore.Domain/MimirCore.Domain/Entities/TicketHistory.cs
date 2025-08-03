@@ -15,7 +15,6 @@ public class TicketHistory : BaseEntity
 
     [StringLength(500)] public string ChangeDescription { get; set; }
 
-    // Navigation properties
     public virtual Ticket Ticket { get; set; }
     public virtual Employee ChangedBy { get; set; }
 }

@@ -18,5 +18,5 @@ public class SystemSetting : BaseEntity
     public string Category { get; set; }
 
     [StringLength(50)]
-    public string DataType { get; set; } = "String"; // String, Integer, Boolean, Decimal
+    public string DataType { get; set; } = "String";
 }

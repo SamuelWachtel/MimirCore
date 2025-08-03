@@ -11,14 +11,13 @@ public class Department : BaseEntity
     [StringLength(500)]
     public string Description { get; set; }
         
-    public int? ParentDepartmentId { get; set; }
+    public Guid? ParentDepartmentId { get; set; }
         
-    public int? DepartmentChiefId { get; set; } // NEW
+    public Guid? DepartmentChiefId { get; set; }
         
-    // Navigation properties
     public virtual Department ParentDepartment { get; set; }
     public virtual ICollection<Department> SubDepartments { get; set; } = new List<Department>();
-    public virtual Employee DepartmentChief { get; set; } // NEW
-    public virtual ICollection<Team> Teams { get; set; } = new List<Team>(); // CHANGED from Employees
+    public virtual Employee DepartmentChief { get; set; }
+    public virtual ICollection<Team> Teams { get; set; } = new List<Team>();
     public virtual ICollection<Position> Positions { get; set; } = new List<Position>();
 }

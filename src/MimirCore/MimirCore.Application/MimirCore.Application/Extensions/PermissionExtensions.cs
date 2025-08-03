@@ -5,7 +5,6 @@ namespace MimirCore.Application.Extensions;
 
 public static class PermissionExtensions
 {
-    // Domain -> Application
     public static PermissionDto ToApplicationDto(this Permission permission)
     {
         return new PermissionDto
@@ -30,7 +29,6 @@ public static class PermissionExtensions
         };
     }
 
-    // Collection extensions
     public static IEnumerable<PermissionDto> ToApplicationDtos(this IEnumerable<Permission> permissions)
     {
         return permissions.Select(p => p.ToApplicationDto());

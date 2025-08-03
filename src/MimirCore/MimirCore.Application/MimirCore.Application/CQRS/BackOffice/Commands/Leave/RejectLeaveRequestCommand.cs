@@ -6,8 +6,8 @@ namespace MimirCore.Application.CQRS.BackOffice.Commands.Leave;
 
 public class RejectLeaveRequestCommand : ICommand
 {
-    public int LeaveRequestId { get; set; }
-    public int RejectedById { get; set; }
+    public Guid LeaveRequestId { get; set; }
+    public Guid RejectedById { get; set; }
     public string Reason { get; set; }
 }
 

@@ -6,7 +6,7 @@ namespace MimirCore.Application.CQRS.Normal.Commands.User;
 
 public class ChangePasswordCommand : ICommand
 {
-    public int UserId { get; set; }
+    public Guid UserId { get; set; }
     public string CurrentPassword { get; set; }
     public string NewPassword { get; set; }
 }

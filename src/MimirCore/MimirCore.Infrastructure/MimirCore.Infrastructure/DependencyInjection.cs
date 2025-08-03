@@ -1,6 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using MimirCore.Application.Infrastructure;
 using MimirCore.Infrastructure.Persistance;
 
@@ -10,7 +13,10 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
     {
-        // Database Configuration
+        services.Configure<DatabaseParamsConfig>(configuration.GetSection(DatabaseParamsConfig.SectionName));
+        
+        services.AddScoped<IAuditableEntitySaveChangesInterceptor, AuditableEntitySaveChangesInterceptor>();
+        
         var connectionString = configuration.GetConnectionString("DefaultConnection");
         
         services.AddDbContext<ApplicationDbContext>(options =>
@@ -24,14 +30,12 @@ public static class DependencyInjection
                     errorNumbersToAdd: null);
             });
             
-            // Enable sensitive data logging in development
             var enableSensitiveDataLogging = configuration.GetSection("Database")["EnableSensitiveDataLogging"];
             if (bool.TryParse(enableSensitiveDataLogging, out bool enableSensitive) && enableSensitive)
             {
                 options.EnableSensitiveDataLogging();
             }
             
-            // Enable detailed errors in development
             var enableDetailedErrors = configuration.GetSection("Database")["EnableDetailedErrors"];
             if (bool.TryParse(enableDetailedErrors, out bool enableDetailed) && enableDetailed)
             {
@@ -39,17 +43,36 @@ public static class DependencyInjection
             }
         });
 
-        // Database Initializer
         services.AddScoped<ApplicationDbContextInitializer>();
 
-        // Application Interfaces
         services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
 
-        // Caching
         services.AddMemoryCache();
 
-        // Note: Additional infrastructure services (Email, FileStorage, etc.) and 
-        // background services will be added when their implementations are created
+        services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        })
+        .AddJwtBearer(options =>
+        {
+            var jwtSettings = configuration.GetSection("JwtSettings");
+            var secretKey = jwtSettings["SecretKey"] ?? "YourDefaultSecretKeyThatShouldBeAtLeast32CharactersLong!";
+            
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                ValidIssuer = jwtSettings["Issuer"] ?? "MimirCore",
+                ValidAudience = jwtSettings["Audience"] ?? "MimirCore",
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey)),
+                ClockSkew = TimeSpan.Zero
+            };
+        });
+
+        services.AddAuthorization();
 
         return services;
     }

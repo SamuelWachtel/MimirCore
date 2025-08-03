@@ -5,7 +5,6 @@ namespace MimirCore.Application.Extensions;
 
 public static class ShiftTemplateExtensions
 {
-    // Domain -> Application
     public static ShiftTemplateDto ToApplicationDto(this ShiftTemplate shiftTemplate)
     {
         return new ShiftTemplateDto
@@ -31,7 +30,6 @@ public static class ShiftTemplateExtensions
         };
     }
 
-    // Collection extensions
     public static IEnumerable<ShiftTemplateDto> ToApplicationDtos(this IEnumerable<ShiftTemplate> shiftTemplates)
     {
         return shiftTemplates.Select(st => st.ToApplicationDto());

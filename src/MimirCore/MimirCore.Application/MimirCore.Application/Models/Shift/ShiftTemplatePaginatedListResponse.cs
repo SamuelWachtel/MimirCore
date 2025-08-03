@@ -2,7 +2,6 @@ using MimirCore.Application.Models.Common;
 
 namespace MimirCore.Application.Models.Shift;
 
-// Shift Template Paginated List Response
 public class ShiftTemplatePaginatedListResponse : PaginatedListResponse<ShiftTemplateItemListDto>
 {
     public ShiftTemplatePaginatedListResponse() : base() { }

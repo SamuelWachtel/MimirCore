@@ -5,7 +5,6 @@ namespace MimirCore.Application.Extensions;
 
 public static class TicketCategoryExtensions
 {
-    // Domain -> Application
     public static TicketCategoryDto ToApplicationDto(this TicketCategory ticketCategory)
     {
         return new TicketCategoryDto
@@ -28,7 +27,6 @@ public static class TicketCategoryExtensions
         };
     }
 
-    // Collection extensions
     public static IEnumerable<TicketCategoryDto> ToApplicationDtos(this IEnumerable<TicketCategory> ticketCategories)
     {
         return ticketCategories.Select(tc => tc.ToApplicationDto());

@@ -5,7 +5,6 @@ namespace MimirCore.Application.Extensions;
 
 public static class TeamExtensions
 {
-    // Domain -> Application
     public static TeamDto ToApplicationDto(this Team team)
     {
         return new TeamDto
@@ -36,7 +35,6 @@ public static class TeamExtensions
         };
     }
 
-    // Application -> Domain
     public static Team ToEntity(this CreateTeamDto createTeamDto)
     {
         return new Team
@@ -58,7 +56,6 @@ public static class TeamExtensions
         team.ModifiedAt = DateTime.UtcNow;
     }
 
-    // Collection extensions
     public static IEnumerable<TeamDto> ToApplicationDtos(this IEnumerable<Team> teams)
     {
         return teams.Select(t => t.ToApplicationDto());

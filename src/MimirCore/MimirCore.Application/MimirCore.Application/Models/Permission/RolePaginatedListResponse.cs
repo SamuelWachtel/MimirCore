@@ -2,7 +2,6 @@ using MimirCore.Application.Models.Common;
 
 namespace MimirCore.Application.Models.Permission;
 
-// Role Paginated List Response
 public class RolePaginatedListResponse : PaginatedListResponse<RoleItemListDto>
 {
     public RolePaginatedListResponse() : base() { }

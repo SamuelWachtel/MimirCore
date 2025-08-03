@@ -9,9 +9,9 @@ public class Employee : BaseEntity
     [StringLength(20)]
     public string EmployeeNumber { get; set; }
         
-    public int UserId { get; set; }
-    public int TeamId { get; set; } // CHANGED from DepartmentId
-    public int PositionId { get; set; }
+    public Guid UserId { get; set; }
+    public Guid TeamId { get; set; }
+    public Guid PositionId { get; set; }
         
     public DateTime HireDate { get; set; }
     public DateTime? TerminationDate { get; set; }
@@ -20,19 +20,16 @@ public class Employee : BaseEntity
     public decimal Salary { get; set; }
         
     [StringLength(50)]
-    public string EmploymentType { get; set; } // Full-time, Part-time, Contract
+    public string EmploymentType { get; set; }
         
     [StringLength(50)]
-    public string Status { get; set; } // Active, Inactive, Terminated
+    public string Status { get; set; }
         
-    // REMOVED: ManagerId and Manager/DirectReports relationships
-        
-    // Navigation properties
     public virtual User User { get; set; }
-    public virtual Team Team { get; set; } // CHANGED from Department
+    public virtual Team Team { get; set; }
     public virtual Position Position { get; set; }
-    public virtual ICollection<Department> LedDepartments { get; set; } = new List<Department>(); // NEW
-    public virtual ICollection<Team> LedTeams { get; set; } = new List<Team>(); // NEW
+    public virtual ICollection<Department> LedDepartments { get; set; } = new List<Department>();
+    public virtual ICollection<Team> LedTeams { get; set; } = new List<Team>();
     public virtual ICollection<LeaveRequest> LeaveRequests { get; set; } = new List<LeaveRequest>();
     public virtual ICollection<Shift> Shifts { get; set; } = new List<Shift>();
     public virtual ICollection<Ticket> AssignedTickets { get; set; } = new List<Ticket>();

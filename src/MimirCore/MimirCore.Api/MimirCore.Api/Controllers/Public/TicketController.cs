@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using MimirCore.Api.Extensions;
 using MimirCore.Api.Models.Ticket;
 using MimirCore.Application.CQRS.Normal.Commands.Ticket;
 using MimirCore.Application.CQRS.Normal.Queries.Ticket;
@@ -32,7 +33,7 @@ public class TicketController : BaseApiController
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<TicketResponse>> GetTicketById(int id)
+    public async Task<ActionResult<TicketResponse>> GetTicketById(Guid id)
     {
         var userId = GetCurrentUserId();
         var query = new GetTicketByIdQuery(id, userId);
@@ -49,7 +50,7 @@ public class TicketController : BaseApiController
             Title = request.Title,
             Description = request.Description,
             CategoryId = request.CategoryId,
-            Priority = request.Priority,
+            Priority = request.Priority.ToApplicationDto(),
             CreatedById = userId
         };
 
@@ -58,7 +59,7 @@ public class TicketController : BaseApiController
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<TicketResponse>> UpdateTicket(int id, [FromBody] UpdateTicketRequest request)
+    public async Task<ActionResult<TicketResponse>> UpdateTicket(Guid id, [FromBody] UpdateTicketRequest request)
     {
         var userId = GetCurrentUserId();
         var command = new UpdateTicketCommand
@@ -67,7 +68,7 @@ public class TicketController : BaseApiController
             Title = request.Title,
             Description = request.Description,
             CategoryId = request.CategoryId,
-            Priority = request.Priority,
+            Priority = request.Priority.ToApplicationDto(),
             UserId = userId
         };
 

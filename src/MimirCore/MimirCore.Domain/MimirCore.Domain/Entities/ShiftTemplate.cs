@@ -20,8 +20,7 @@ public class ShiftTemplate : BaseEntity
     public string Description { get; set; }
         
     [StringLength(50)]
-    public string ShiftType { get; set; } // Morning, Evening, Night, Rotating
+    public string ShiftType { get; set; }
         
-    // Navigation properties
     public virtual ICollection<Shift> Shifts { get; set; } = new List<Shift>();
 }

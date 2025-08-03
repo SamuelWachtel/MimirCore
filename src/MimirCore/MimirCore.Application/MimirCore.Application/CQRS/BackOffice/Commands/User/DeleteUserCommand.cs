@@ -6,12 +6,7 @@ namespace MimirCore.Application.CQRS.BackOffice.Commands.User;
 
 public class DeleteUserCommand : ICommand
 {
-    public int Id { get; set; }
-    
-    public DeleteUserCommand(int id)
-    {
-        Id = id;
-    }
+    public Guid Id { get; set; }
 }
 
 public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand>

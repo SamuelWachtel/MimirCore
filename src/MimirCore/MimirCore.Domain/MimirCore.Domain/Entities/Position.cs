@@ -12,7 +12,7 @@ public class Position : BaseEntity
     [StringLength(500)]
     public string Description { get; set; }
         
-    public int DepartmentId { get; set; }
+    public Guid DepartmentId { get; set; }
         
     [Column(TypeName = "decimal(18,2)")]
     public decimal? MinSalary { get; set; }
@@ -20,7 +20,6 @@ public class Position : BaseEntity
     [Column(TypeName = "decimal(18,2)")]
     public decimal? MaxSalary { get; set; }
         
-    // Navigation properties
     public virtual Department Department { get; set; }
     public virtual ICollection<Employee> Employees { get; set; } = new List<Employee>();
 }

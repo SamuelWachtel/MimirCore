@@ -40,7 +40,7 @@ public class LeaveController : BaseApiController
     }
 
     [HttpPost("requests/{id}/approve")]
-    public async Task<ActionResult> ApproveLeaveRequest(int id, [FromBody] ApproveLeaveRequestRequest request)
+    public async Task<ActionResult> ApproveLeaveRequest(Guid id, [FromBody] ApproveLeaveRequestRequest request)
     {
         var approvedById = GetCurrentUserId();
         var command = new ApproveLeaveRequestCommand
@@ -55,7 +55,7 @@ public class LeaveController : BaseApiController
     }
 
     [HttpPost("requests/{id}/reject")]
-    public async Task<ActionResult> RejectLeaveRequest(int id, [FromBody] RejectLeaveRequestRequest request)
+    public async Task<ActionResult> RejectLeaveRequest(Guid id, [FromBody] RejectLeaveRequestRequest request)
     {
         var rejectedById = GetCurrentUserId();
         var command = new RejectLeaveRequestCommand

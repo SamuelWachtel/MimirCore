@@ -6,7 +6,6 @@ namespace MimirCore.Api.Extensions;
 
 public static class TeamApiExtensions
 {
-    // Application -> API
     public static TeamApiResponse ToApiDto(this TeamDto teamDto)
     {
         return new TeamApiResponse
@@ -37,7 +36,6 @@ public static class TeamApiExtensions
         };
     }
 
-    // API -> Application
     public static CreateTeamDto ToApplicationDto(this CreateTeamRequest createTeamRequest)
     {
         return new CreateTeamDto
@@ -60,7 +58,6 @@ public static class TeamApiExtensions
         };
     }
 
-    // Collection extensions
     public static IEnumerable<TeamApiResponse> ToApiDtos(this IEnumerable<TeamDto> teams)
     {
         return teams.Select(t => t.ToApiDto());
@@ -71,7 +68,6 @@ public static class TeamApiExtensions
         return teams.Select(t => t.ToApiDto());
     }
 
-    // Pagination extensions
     public static TeamPaginatedListResponse ToApiResponse(this Application.Models.Team.TeamPaginatedListResponse appResponse)
     {
         return new TeamPaginatedListResponse(

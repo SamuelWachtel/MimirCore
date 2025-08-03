@@ -27,10 +27,10 @@ public abstract class BaseApiController : ControllerBase
         return Ok(result);
     }
 
-    protected int GetCurrentUserId()
+    protected Guid GetCurrentUserId()
     {
         var userIdClaim = User.FindFirst("UserId")?.Value;
-        if (string.IsNullOrEmpty(userIdClaim) || !int.TryParse(userIdClaim, out var userId))
+        if (string.IsNullOrEmpty(userIdClaim) || !Guid.TryParse(userIdClaim, out var userId))
         {
             throw new UnauthorizedAccessException("User ID not found in token");
         }

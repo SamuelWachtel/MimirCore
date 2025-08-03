@@ -6,8 +6,8 @@ namespace MimirCore.Application.CQRS.Normal.Commands.Leave;
 
 public class CancelLeaveRequestCommand : ICommand
 {
-    public int LeaveRequestId { get; set; }
-    public int EmployeeId { get; set; }
+    public Guid LeaveRequestId { get; set; }
+    public Guid EmployeeId { get; set; }
 }
 
 public class CancelLeaveRequestCommandHandler : IRequestHandler<CancelLeaveRequestCommand>

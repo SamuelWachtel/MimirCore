@@ -7,9 +7,9 @@ namespace MimirCore.Application.CQRS.Normal.Queries.User;
 
 public class GetUserByIdQuery : IQuery<UserDto>
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     
-    public GetUserByIdQuery(int id)
+    public GetUserByIdQuery(Guid id)
     {
         Id = id;
     }

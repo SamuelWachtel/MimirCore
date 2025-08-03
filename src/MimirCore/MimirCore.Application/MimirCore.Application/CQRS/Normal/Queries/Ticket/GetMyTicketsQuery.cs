@@ -7,7 +7,7 @@ namespace MimirCore.Application.CQRS.Normal.Queries.Ticket;
 
 public class GetMyTicketsQuery : IQuery<TicketPaginatedListResponse>
 {
-    public int UserId { get; set; }
+    public Guid UserId { get; set; }
     public int PageNumber { get; set; } = 1;
     public int PageSize { get; set; } = 10;
     public string? Status { get; set; }

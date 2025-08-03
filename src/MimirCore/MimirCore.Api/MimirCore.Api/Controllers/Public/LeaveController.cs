@@ -15,7 +15,7 @@ public class LeaveController : BaseApiController
         [FromQuery] int pageSize = 10,
         [FromQuery] string? status = null)
     {
-        var employeeId = GetCurrentUserId(); // Assuming user has employee context
+        var employeeId = GetCurrentUserId();
         var query = new GetMyLeaveRequestsQuery
         {
             EmployeeId = employeeId,
@@ -39,7 +39,7 @@ public class LeaveController : BaseApiController
     [HttpPost("request")]
     public async Task<ActionResult<LeaveRequestResponse>> CreateLeaveRequest([FromBody] CreateLeaveRequestRequest request)
     {
-        var employeeId = GetCurrentUserId(); // Assuming user has employee context
+        var employeeId = GetCurrentUserId();
         var command = new CreateLeaveRequestCommand
         {
             EmployeeId = employeeId,
@@ -54,9 +54,9 @@ public class LeaveController : BaseApiController
     }
 
     [HttpPost("{id}/cancel")]
-    public async Task<ActionResult> CancelLeaveRequest(int id)
+    public async Task<ActionResult> CancelLeaveRequest(Guid id)
     {
-        var employeeId = GetCurrentUserId(); // Assuming user has employee context
+        var employeeId = GetCurrentUserId();
         var command = new CancelLeaveRequestCommand
         {
             LeaveRequestId = id,
@@ -70,7 +70,7 @@ public class LeaveController : BaseApiController
 
 public class CreateLeaveRequestRequest
 {
-    public int LeaveTypeId { get; set; }
+    public Guid LeaveTypeId { get; set; }
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
     public string Reason { get; set; } = string.Empty;
@@ -78,9 +78,9 @@ public class CreateLeaveRequestRequest
 
 public class LeaveRequestResponse
 {
-    public int Id { get; set; }
-    public int EmployeeId { get; set; }
-    public int LeaveTypeId { get; set; }
+    public Guid Id { get; set; }
+    public Guid EmployeeId { get; set; }
+    public Guid LeaveTypeId { get; set; }
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
     public string Reason { get; set; } = string.Empty;
@@ -98,7 +98,7 @@ public class LeaveRequestPaginatedListResponse
 
 public class LeaveRequestItemListDto
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     public string LeaveTypeName { get; set; } = string.Empty;
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
@@ -109,7 +109,7 @@ public class LeaveRequestItemListDto
 
 public class LeaveTypeItemListDto
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     public string Name { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
     public int DefaultDays { get; set; }

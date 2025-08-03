@@ -6,7 +6,6 @@ namespace MimirCore.Api.Extensions;
 
 public static class EmployeeApiExtensions
 {
-    // Application -> API
     public static EmployeeResponse ToApiDto(this EmployeeDto employeeDto)
     {
         return new EmployeeResponse
@@ -45,7 +44,6 @@ public static class EmployeeApiExtensions
         };
     }
 
-    // API -> Application
     public static CreateEmployeeDto ToApplicationDto(this CreateEmployeeRequest createEmployeeRequest)
     {
         return new CreateEmployeeDto
@@ -75,7 +73,6 @@ public static class EmployeeApiExtensions
         };
     }
 
-    // Collection extensions
     public static IEnumerable<EmployeeResponse> ToApiDtos(this IEnumerable<EmployeeDto> employees)
     {
         return employees.Select(e => e.ToApiDto());
@@ -86,7 +83,6 @@ public static class EmployeeApiExtensions
         return employees.Select(e => e.ToApiDto());
     }
 
-    // Pagination extensions
     public static EmployeePaginatedListResponse ToApiResponse(this Application.Models.Employee.EmployeePaginatedListResponse appResponse)
     {
         return new EmployeePaginatedListResponse(

@@ -2,7 +2,6 @@ using MimirCore.Application.Models.Common;
 
 namespace MimirCore.Application.Models.Team;
 
-// Team Paginated List Response
 public class TeamPaginatedListResponse : PaginatedListResponse<TeamItemListDto>
 {
     public TeamPaginatedListResponse() : base() { }

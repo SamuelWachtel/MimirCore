@@ -2,7 +2,6 @@ using MimirCore.Application.Models.Common;
 
 namespace MimirCore.Application.Models.Leave;
 
-// Leave Type Paginated List Response
 public class LeaveTypePaginatedListResponse : PaginatedListResponse<LeaveTypeItemListDto>
 {
     public LeaveTypePaginatedListResponse() : base() { }

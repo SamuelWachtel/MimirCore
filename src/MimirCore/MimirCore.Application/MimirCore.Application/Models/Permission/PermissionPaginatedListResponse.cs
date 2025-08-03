@@ -2,7 +2,6 @@ using MimirCore.Application.Models.Common;
 
 namespace MimirCore.Application.Models.Permission;
 
-// Permission Paginated List Response
 public class PermissionPaginatedListResponse : PaginatedListResponse<PermissionItemListDto>
 {
     public PermissionPaginatedListResponse() : base() { }

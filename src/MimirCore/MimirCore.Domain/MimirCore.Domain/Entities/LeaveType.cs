@@ -17,6 +17,5 @@ public class LeaveType : BaseEntity
         
     public bool IsPaid { get; set; } = true;
         
-    // Navigation properties
     public virtual ICollection<LeaveRequest> LeaveRequests { get; set; } = new List<LeaveRequest>();
 }

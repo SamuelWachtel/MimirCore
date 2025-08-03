@@ -15,12 +15,11 @@ public class TimeLog : BaseEntity
     public int? TotalMinutes { get; set; }
         
     [StringLength(50)]
-    public string LogType { get; set; } = "Regular"; // Regular, Overtime, Break
+    public string LogType { get; set; } = "Regular";
         
     [StringLength(500)]
     public string Notes { get; set; }
         
-    // Navigation properties
     public virtual Employee Employee { get; set; }
     public virtual Shift Shift { get; set; }
 }

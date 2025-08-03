@@ -46,7 +46,6 @@ public class ApplicationDbContextInitializer
 
     public async Task TrySeedAsync()
     {
-        // Check if already seeded
         if (await _context.Roles.AnyAsync())
         {
             return;
@@ -124,49 +123,41 @@ public class ApplicationDbContextInitializer
         }
 
         _context.Permissions.AddRange(
-            // User Management
             new Permission { Name = "Users.View", Description = "View users", Module = "Users", CreatedBy = "System", ModifiedBy = "System" },
             new Permission { Name = "Users.Create", Description = "Create users", Module = "Users", CreatedBy = "System", ModifiedBy = "System" },
             new Permission { Name = "Users.Edit", Description = "Edit users", Module = "Users", CreatedBy = "System", ModifiedBy = "System" },
             new Permission { Name = "Users.Delete", Description = "Delete users", Module = "Users", CreatedBy = "System", ModifiedBy = "System" },
             
-            // Employee Management
             new Permission { Name = "Employees.View", Description = "View employees", Module = "HR", CreatedBy = "System", ModifiedBy = "System" },
             new Permission { Name = "Employees.Create", Description = "Create employees", Module = "HR", CreatedBy = "System", ModifiedBy = "System" },
             new Permission { Name = "Employees.Edit", Description = "Edit employees", Module = "HR", CreatedBy = "System", ModifiedBy = "System" },
             new Permission { Name = "Employees.Delete", Description = "Delete employees", Module = "HR", CreatedBy = "System", ModifiedBy = "System" },
             
-            // Team Management
             new Permission { Name = "Teams.View", Description = "View teams", Module = "HR", CreatedBy = "System", ModifiedBy = "System" },
             new Permission { Name = "Teams.Create", Description = "Create teams", Module = "HR", CreatedBy = "System", ModifiedBy = "System" },
             new Permission { Name = "Teams.Edit", Description = "Edit teams", Module = "HR", CreatedBy = "System", ModifiedBy = "System" },
             new Permission { Name = "Teams.Delete", Description = "Delete teams", Module = "HR", CreatedBy = "System", ModifiedBy = "System" },
             
-            // Department Management
             new Permission { Name = "Departments.View", Description = "View departments", Module = "HR", CreatedBy = "System", ModifiedBy = "System" },
             new Permission { Name = "Departments.Create", Description = "Create departments", Module = "HR", CreatedBy = "System", ModifiedBy = "System" },
             new Permission { Name = "Departments.Edit", Description = "Edit departments", Module = "HR", CreatedBy = "System", ModifiedBy = "System" },
             new Permission { Name = "Departments.Delete", Description = "Delete departments", Module = "HR", CreatedBy = "System", ModifiedBy = "System" },
             
-            // Leave Management
             new Permission { Name = "Leaves.View", Description = "View leave requests", Module = "HR", CreatedBy = "System", ModifiedBy = "System" },
             new Permission { Name = "Leaves.Create", Description = "Create leave requests", Module = "HR", CreatedBy = "System", ModifiedBy = "System" },
             new Permission { Name = "Leaves.Approve", Description = "Approve leave requests", Module = "HR", CreatedBy = "System", ModifiedBy = "System" },
             
-            // Shift Management
             new Permission { Name = "Shifts.View", Description = "View shifts", Module = "Shifts", CreatedBy = "System", ModifiedBy = "System" },
             new Permission { Name = "Shifts.Create", Description = "Create shifts", Module = "Shifts", CreatedBy = "System", ModifiedBy = "System" },
             new Permission { Name = "Shifts.Edit", Description = "Edit shifts", Module = "Shifts", CreatedBy = "System", ModifiedBy = "System" },
             new Permission { Name = "Shifts.Delete", Description = "Delete shifts", Module = "Shifts", CreatedBy = "System", ModifiedBy = "System" },
             
-            // Ticket Management
             new Permission { Name = "Tickets.View", Description = "View tickets", Module = "Tickets", CreatedBy = "System", ModifiedBy = "System" },
             new Permission { Name = "Tickets.Create", Description = "Create tickets", Module = "Tickets", CreatedBy = "System", ModifiedBy = "System" },
             new Permission { Name = "Tickets.Edit", Description = "Edit tickets", Module = "Tickets", CreatedBy = "System", ModifiedBy = "System" },
             new Permission { Name = "Tickets.Assign", Description = "Assign tickets", Module = "Tickets", CreatedBy = "System", ModifiedBy = "System" },
             new Permission { Name = "Tickets.Close", Description = "Close tickets", Module = "Tickets", CreatedBy = "System", ModifiedBy = "System" },
             
-            // System Administration
             new Permission { Name = "System.Settings", Description = "Manage system settings", Module = "System", CreatedBy = "System", ModifiedBy = "System" },
             new Permission { Name = "System.Reports", Description = "View system reports", Module = "System", CreatedBy = "System", ModifiedBy = "System" }
         );
@@ -179,7 +170,6 @@ public class ApplicationDbContextInitializer
             return;
         }
 
-        // Get seeded roles and permissions
         var roles = await _context.Roles.ToListAsync();
         var permissions = await _context.Permissions.ToListAsync();
 
@@ -192,7 +182,6 @@ public class ApplicationDbContextInitializer
 
         var rolePermissions = new List<RolePermission>();
 
-        // Admin - All permissions
         foreach (var permission in permissions)
         {
             rolePermissions.Add(new RolePermission 
@@ -204,7 +193,6 @@ public class ApplicationDbContextInitializer
             });
         }
 
-        // HR Manager - HR related permissions
         var hrPermissions = permissions.Where(p => 
             p.Module == "HR" || 
             p.Name.StartsWith("Users.") || 
@@ -221,7 +209,6 @@ public class ApplicationDbContextInitializer
             });
         }
 
-        // Department Chief - Department and team management
         var deptPermissions = permissions.Where(p => 
             p.Name.StartsWith("Teams.") || 
             p.Name.StartsWith("Employees.View") || 
@@ -240,7 +227,6 @@ public class ApplicationDbContextInitializer
             });
         }
 
-        // Team Leader - Team management
         var teamPermissions = permissions.Where(p => 
             p.Name == "Teams.View" || 
             p.Name == "Teams.Edit" ||
@@ -260,7 +246,6 @@ public class ApplicationDbContextInitializer
             });
         }
 
-        // Employee - Basic permissions
         var empPermissions = permissions.Where(p => 
             p.Name == "Employees.View" || 
             p.Name == "Teams.View" ||
@@ -281,7 +266,6 @@ public class ApplicationDbContextInitializer
             });
         }
 
-        // IT Support - Ticket management
         var itPermissions = permissions.Where(p => 
             p.Name.StartsWith("Tickets.") ||
             p.Name == "Employees.View" ||
