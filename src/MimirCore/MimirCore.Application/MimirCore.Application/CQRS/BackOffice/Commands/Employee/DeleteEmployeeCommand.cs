@@ -6,7 +6,7 @@ namespace MimirCore.Application.CQRS.BackOffice.Commands.Employee;
 
 public class DeleteEmployeeCommand : ICommand
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     public DateTime TerminationDate { get; set; }
     public string Reason { get; set; }
 }

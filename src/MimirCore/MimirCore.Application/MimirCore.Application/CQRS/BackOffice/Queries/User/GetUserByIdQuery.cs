@@ -7,12 +7,7 @@ namespace MimirCore.Application.CQRS.BackOffice.Queries.User;
 
 public class GetUserByIdQuery : IQuery<UserDto>
 {
-    public int Id { get; set; }
-    
-    public GetUserByIdQuery(int id)
-    {
-        Id = id;
-    }
+    public Guid Id { get; set; }
 }
 
 public class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, UserDto>

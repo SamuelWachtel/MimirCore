@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using MimirCore.Api.Controllers.Public;
+using MimirCore.Api.Models.Leave;
 using MimirCore.Application.CQRS.BackOffice.Commands.Leave;
 using MimirCore.Application.CQRS.BackOffice.Queries.Leave;
 
@@ -15,8 +16,8 @@ public class LeaveController : BaseApiController
         [FromQuery] int pageNumber = 1,
         [FromQuery] int pageSize = 10,
         [FromQuery] string? status = null,
-        [FromQuery] int? employeeId = null,
-        [FromQuery] int? leaveTypeId = null,
+        [FromQuery] Guid? employeeId = null,
+        [FromQuery] Guid? leaveTypeId = null,
         [FromQuery] DateTime? startDate = null,
         [FromQuery] DateTime? endDate = null,
         [FromQuery] string? sortBy = null,
@@ -83,31 +84,4 @@ public class LeaveController : BaseApiController
         var result = await Mediator.Send(command);
         return HandleResult(result);
     }
-}
-
-public class ApproveLeaveRequestRequest
-{
-    public string? Comments { get; set; }
-}
-
-public class RejectLeaveRequestRequest
-{
-    public string Reason { get; set; } = string.Empty;
-}
-
-public class CreateLeaveTypeRequest
-{
-    public string Name { get; set; } = string.Empty;
-    public string Description { get; set; } = string.Empty;
-    public int DefaultDays { get; set; }
-    public bool RequiresApproval { get; set; } = true;
-}
-
-public class LeaveTypeResponse
-{
-    public int Id { get; set; }
-    public string Name { get; set; } = string.Empty;
-    public string Description { get; set; } = string.Empty;
-    public int DefaultDays { get; set; }
-    public bool RequiresApproval { get; set; }
 }

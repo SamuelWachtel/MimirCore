@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using MimirCore.Api.Models.Permission;
 using MimirCore.Application.CQRS.BackOffice.Commands.Permission;
 using MimirCore.Application.CQRS.BackOffice.Queries.Permission;
 
@@ -45,35 +46,4 @@ public class PermissionController : BaseApiController
         var result = await Mediator.Send(command);
         return HandleResult(result);
     }
-}
-
-public class CreatePermissionRequest
-{
-    public string Name { get; set; } = string.Empty;
-    public string Description { get; set; } = string.Empty;
-    public string Category { get; set; } = string.Empty;
-}
-
-public class PermissionResponse
-{
-    public int Id { get; set; }
-    public string Name { get; set; } = string.Empty;
-    public string Description { get; set; } = string.Empty;
-    public string Category { get; set; } = string.Empty;
-}
-
-public class PermissionPaginatedListResponse
-{
-    public IEnumerable<PermissionItemListDto> Items { get; set; } = new List<PermissionItemListDto>();
-    public int TotalCount { get; set; }
-    public int PageNumber { get; set; }
-    public int PageSize { get; set; }
-}
-
-public class PermissionItemListDto
-{
-    public int Id { get; set; }
-    public string Name { get; set; } = string.Empty;
-    public string Description { get; set; } = string.Empty;
-    public string Category { get; set; } = string.Empty;
 }

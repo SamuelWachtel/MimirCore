@@ -6,12 +6,7 @@ namespace MimirCore.Application.CQRS.BackOffice.Commands.Department;
 
 public class DeleteDepartmentCommand : ICommand
 {
-    public int Id { get; set; }
-    
-    public DeleteDepartmentCommand(int id)
-    {
-        Id = id;
-    }
+    public Guid Id { get; set; }
 }
 
 public class DeleteDepartmentCommandHandler : IRequestHandler<DeleteDepartmentCommand>

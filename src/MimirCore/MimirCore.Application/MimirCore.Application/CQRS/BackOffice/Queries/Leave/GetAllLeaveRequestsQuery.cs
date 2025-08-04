@@ -10,8 +10,8 @@ public class GetAllLeaveRequestsQuery : IQuery<LeaveRequestPaginatedListResponse
     public int PageNumber { get; set; } = 1;
     public int PageSize { get; set; } = 10;
     public string? Status { get; set; }
-    public int? EmployeeId { get; set; }
-    public int? LeaveTypeId { get; set; }
+    public Guid? EmployeeId { get; set; }
+    public Guid? LeaveTypeId { get; set; }
     public DateTime? StartDate { get; set; }
     public DateTime? EndDate { get; set; }
     public string? SortBy { get; set; } = "CreatedAt";

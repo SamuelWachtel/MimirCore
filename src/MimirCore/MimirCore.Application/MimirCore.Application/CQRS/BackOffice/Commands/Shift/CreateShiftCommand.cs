@@ -7,8 +7,8 @@ namespace MimirCore.Application.CQRS.BackOffice.Commands.Shift;
 
 public class CreateShiftCommand : ICommand<ShiftDto>
 {
-    public int EmployeeId { get; set; }
-    public int? ShiftTemplateId { get; set; }
+    public Guid EmployeeId { get; set; }
+    public Guid? ShiftTemplateId { get; set; }
     public DateTime StartTime { get; set; }
     public DateTime EndTime { get; set; }
     public string? Notes { get; set; }

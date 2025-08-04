@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using MimirCore.Api.Models.Permission;
 using MimirCore.Application.CQRS.BackOffice.Commands.Role;
 using MimirCore.Application.CQRS.BackOffice.Queries.Role;
 
@@ -45,7 +46,7 @@ public class RoleController : BaseApiController
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<RoleResponse>> UpdateRole(int id, [FromBody] UpdateRoleRequest request)
+    public async Task<ActionResult<RoleResponse>> UpdateRole(Guid id, [FromBody] UpdateRoleRequest request)
     {
         var command = new UpdateRoleCommand
         {
@@ -71,12 +72,12 @@ public class UpdateRoleRequest
 {
     public string Name { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
-    public List<int>? PermissionIds { get; set; }
+    public List<Guid>? PermissionIds { get; set; }
 }
 
 public class RoleResponse
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     public string Name { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
     public List<PermissionItemListDto> Permissions { get; set; } = new();
@@ -92,7 +93,7 @@ public class RolePaginatedListResponse
 
 public class RoleItemListDto
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     public string Name { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
     public int PermissionCount { get; set; }

@@ -16,8 +16,8 @@ public class EmployeeController : BaseApiController
         [FromQuery] int pageSize = 10,
         [FromQuery] string? searchTerm = null,
         [FromQuery] string? status = null,
-        [FromQuery] int? teamId = null,
-        [FromQuery] int? positionId = null,
+        [FromQuery] Guid? teamId = null,
+        [FromQuery] Guid? positionId = null,
         [FromQuery] string? sortBy = null,
         [FromQuery] string? sortOrder = null)
     {
@@ -86,10 +86,4 @@ public class EmployeeController : BaseApiController
         await Mediator.Send(command);
         return Ok();
     }
-}
-
-public class TerminateEmployeeRequest
-{
-    public DateTime TerminationDate { get; set; }
-    public string Reason { get; set; } = string.Empty;
 }

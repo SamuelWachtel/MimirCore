@@ -14,7 +14,7 @@ public class ShiftController : BaseApiController
     public async Task<ActionResult<ShiftPaginatedListResponse>> GetAllShifts(
         [FromQuery] int pageNumber = 1,
         [FromQuery] int pageSize = 10,
-        [FromQuery] int? employeeId = null,
+        [FromQuery] Guid? employeeId = null,
         [FromQuery] DateTime? startDate = null,
         [FromQuery] DateTime? endDate = null,
         [FromQuery] string? status = null,
@@ -56,8 +56,8 @@ public class ShiftController : BaseApiController
 
 public class CreateShiftRequest
 {
-    public int EmployeeId { get; set; }
-    public int? ShiftTemplateId { get; set; }
+    public Guid EmployeeId { get; set; }
+    public Guid? ShiftTemplateId { get; set; }
     public DateTime StartTime { get; set; }
     public DateTime EndTime { get; set; }
     public string? Notes { get; set; }
@@ -65,10 +65,10 @@ public class CreateShiftRequest
 
 public class ShiftResponse
 {
-    public int Id { get; set; }
-    public int EmployeeId { get; set; }
+    public Guid Id { get; set; }
+    public Guid EmployeeId { get; set; }
     public string EmployeeName { get; set; } = string.Empty;
-    public int? ShiftTemplateId { get; set; }
+    public Guid? ShiftTemplateId { get; set; }
     public DateTime StartTime { get; set; }
     public DateTime EndTime { get; set; }
     public DateTime? ActualStartTime { get; set; }

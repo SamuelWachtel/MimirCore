@@ -57,7 +57,7 @@ public class DepartmentController : BaseApiController
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<DepartmentResponse>> UpdateDepartment(int id, [FromBody] UpdateDepartmentRequest request)
+    public async Task<ActionResult<DepartmentResponse>> UpdateDepartment(Guid id, [FromBody] UpdateDepartmentRequest request)
     {
         var command = new UpdateDepartmentCommand
         {
@@ -73,9 +73,9 @@ public class DepartmentController : BaseApiController
     }
 
     [HttpDelete("{id}")]
-    public async Task<ActionResult> DeleteDepartment(int id)
+    public async Task<ActionResult> DeleteDepartment(Guid id)
     {
-        var command = new DeleteDepartmentCommand(id);
+        var command = new DeleteDepartmentCommand { Id = id };
         await Mediator.Send(command);
         return NoContent();
     }

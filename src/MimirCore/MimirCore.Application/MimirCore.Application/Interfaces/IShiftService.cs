@@ -5,13 +5,13 @@ namespace MimirCore.Application.Interfaces;
 
 public interface IShiftService
 {
-    Task<ShiftDto> GetByIdAsync(int id);
-    Task<IEnumerable<ShiftDto>> GetByEmployeeAsync(int employeeId, DateTime? startDate = null, DateTime? endDate = null);
-    Task<IEnumerable<ShiftDto>> GetByTeamAsync(int teamId, DateTime date);
+    Task<ShiftDto> GetByIdAsync(Guid id);
+    Task<IEnumerable<ShiftDto>> GetByEmployeeAsync(Guid employeeId, DateTime? startDate = null, DateTime? endDate = null);
+    Task<IEnumerable<ShiftDto>> GetByTeamAsync(Guid teamId, DateTime date);
     Task<ShiftDto> CreateAsync(CreateShiftDto createShiftDto);
     Task UpdateAsync(UpdateShiftDto updateShiftDto);
-    Task DeleteAsync(int id);
-    Task ClockInAsync(int shiftId, DateTime? clockInTime = null);
-    Task ClockOutAsync(int shiftId, DateTime? clockOutTime = null);
-    Task<IEnumerable<ShiftDto>> GetScheduleAsync(DateTime startDate, DateTime endDate, int? teamId = null);
+    Task DeleteAsync(Guid id);
+    Task ClockInAsync(Guid shiftId, DateTime? clockInTime = null);
+    Task ClockOutAsync(Guid shiftId, DateTime? clockOutTime = null);
+    Task<IEnumerable<ShiftDto>> GetScheduleAsync(DateTime startDate, DateTime endDate, Guid? teamId = null);
 }

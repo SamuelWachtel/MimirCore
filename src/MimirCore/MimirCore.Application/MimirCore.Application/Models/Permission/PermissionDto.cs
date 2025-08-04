@@ -25,9 +25,9 @@ public class RoleDto
 
 public class UserRoleDto
 {
-    public int Id { get; set; }
-    public int UserId { get; set; }
-    public int RoleId { get; set; }
+    public Guid Id { get; set; }
+    public Guid UserId { get; set; }
+    public Guid RoleId { get; set; }
     public DateTime AssignedAt { get; set; }
     
     public UserItemListDto User { get; set; }

@@ -11,8 +11,8 @@ public class GetAllEmployeesQuery : IQuery<EmployeePaginatedListResponse>
     public int PageSize { get; set; } = 10;
     public string? SearchTerm { get; set; }
     public string? Status { get; set; }
-    public int? TeamId { get; set; }
-    public int? PositionId { get; set; }
+    public Guid? TeamId { get; set; }
+    public Guid? PositionId { get; set; }
     public string? SortBy { get; set; } = "CreatedAt";
     public string? SortOrder { get; set; } = "desc";
 }

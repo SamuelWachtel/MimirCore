@@ -34,9 +34,9 @@ public class UserController : BaseApiController
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<UserResponse>> GetUserById(int id)
+    public async Task<ActionResult<UserResponse>> GetUserById(Guid id)
     {
-        var query = new GetUserByIdQuery(id);
+        var query = new GetUserByIdQuery{Id = id};
         var result = await Mediator.Send(query);
         return HandleResult(result);
     }

@@ -5,12 +5,12 @@ namespace MimirCore.Application.Interfaces;
 
 public interface IUserService
 {
-    Task<UserDto> GetByIdAsync(int id);
+    Task<UserDto> GetByIdAsync(Guid id);
     Task<UserDto> GetByUsernameAsync(string username);
     Task<UserDto> CreateAsync(CreateUserDto createUserDto, string password);
     Task UpdateAsync(UpdateUserDto updateUserDto);
-    Task DeleteAsync(int id);
+    Task DeleteAsync(Guid id);
     Task<bool> ValidatePasswordAsync(string username, string password);
-    Task ChangePasswordAsync(int userId, string currentPassword, string newPassword);
-    Task ResetPasswordAsync(int userId, string newPassword);
+    Task ChangePasswordAsync(Guid userId, string currentPassword, string newPassword);
+    Task ResetPasswordAsync(Guid userId, string newPassword);
 }

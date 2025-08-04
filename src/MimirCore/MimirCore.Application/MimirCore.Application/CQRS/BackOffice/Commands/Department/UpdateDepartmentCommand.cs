@@ -7,7 +7,7 @@ namespace MimirCore.Application.CQRS.BackOffice.Commands.Department;
 
 public class UpdateDepartmentCommand : ICommand<DepartmentDto>
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
     public Guid? ChiefId { get; set; }

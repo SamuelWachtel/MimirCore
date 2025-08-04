@@ -5,13 +5,13 @@ namespace MimirCore.Application.Interfaces;
 
 public interface ITeamService
 {
-    Task<TeamDto> GetByIdAsync(int id);
-    Task<IEnumerable<TeamDto>> GetByDepartmentAsync(int departmentId);
+    Task<TeamDto> GetByIdAsync(Guid id);
+    Task<IEnumerable<TeamDto>> GetByDepartmentAsync(Guid departmentId);
     Task<IEnumerable<TeamDto>> GetAllAsync();
     Task<TeamDto> CreateAsync(CreateTeamDto createTeamDto);
     Task UpdateAsync(UpdateTeamDto updateTeamDto);
-    Task DeleteAsync(int id);
-    Task AssignLeaderAsync(int teamId, int employeeId);
-    Task AddEmployeeAsync(int teamId, int employeeId);
-    Task RemoveEmployeeAsync(int teamId, int employeeId);
+    Task DeleteAsync(Guid id);
+    Task AssignLeaderAsync(Guid teamId, Guid employeeId);
+    Task AddEmployeeAsync(Guid teamId, Guid employeeId);
+    Task RemoveEmployeeAsync(Guid teamId, Guid employeeId);
 }
